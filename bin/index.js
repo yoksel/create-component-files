@@ -46,6 +46,16 @@ function createReactComponent() {
         return;
     }
 
+    if (isLowerCase(params.name)){
+        console.log(error(`Component was not created:`));
+        console.log('React component name must starts with an uppercase letter');
+        return;
+    }
+
+    if (params.path === undefined) {
+        params.path = './';
+    }
+
     createFileTree(params);
 }
 
