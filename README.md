@@ -16,9 +16,11 @@ or like this (without prefix `--name`):
 
 or the same with handy command, place it to `scripts` section in `package.json` like this:
 
-```"scripts": {
+```
+"scripts": {
     "create": "node ./node_modules/create-component-files --path=./src/components/"
-}```
+}
+```
 
 It allows to set `--path` once and then just pass component name
 
