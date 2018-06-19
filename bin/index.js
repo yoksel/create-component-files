@@ -53,7 +53,10 @@ function createReactComponent() {
     }
 
     if (params.path === undefined) {
-        params.path = './';
+        params.path = setCurrentDir(params);
+    }
+    else if(params.path.slice(-1) !== '/') {
+        params.path += '/';
     }
 
     createFileTree(params);
@@ -66,7 +69,7 @@ function createFileTree(params) {
     const jsContent = getJsContent(params);
     const cssContent = getCSSContent(params);
     const mdContent = getMDContent(params);
-    let componentPath = `./${params.path}/${params.name}`;
+    let componentPath = `${params.path}${params.name}`;
 
     // Add folder
     fs.mkdir(componentPath, (err) => {
@@ -92,7 +95,7 @@ function createFileTree(params) {
             errorMessage(err, 'JS');
 
             // Add CSS-file
-            fs.writeFile(`${componentPath}/index.css`, cssContent, (err) => {
+            fs.writeFile(`${componentPath}/${params.name}.css`, cssContent, (err) => {
                 errorMessage(err, 'CSS');
 
                 // Add md-file
@@ -109,6 +112,17 @@ function createFileTree(params) {
 
 // Helpers
 // ------------------------------
+
+function setCurrentDir(params) {
+    const currentDir = path.relative(process.cwd(), process.env.INIT_CWD);
+    let currentPath = '';
+
+    if (currentDir) {
+        currentPath = `./${currentDir}/`;
+    }
+
+    return currentPath;
+}
 
 function isLowerCase(name) {
     const firstNameLetter = name.substr(0,1);
@@ -131,7 +145,7 @@ function errorMessage(err, fileTypetype) {
 
 function getJsContent(params) {
 return `import React, { Component } from 'react';
-import './index.css';
+import './${params.name}.css';
 
 class ${params.name} extends Component {
   render() {
