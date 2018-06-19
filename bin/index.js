@@ -13,7 +13,7 @@ const gold = chalk.keyword('gold');
 const seagreen = chalk.keyword('lightseagreen');
 const teal = chalk.keyword('teal');
 
-const usage = `${gold('Usage:')} node createComponent.js --path=./src/Components --name=MyComponent`;
+const usage = `${gold('Usage:')} $(npm bin)/create-component-files --path=./src/Components --name=MyComponent`;
 
 // ------------------------------
 
