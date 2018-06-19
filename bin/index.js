@@ -95,8 +95,8 @@ function createFileTree(params) {
             errorMessage(err, 'JS');
 
             // Add CSS-file
-            fs.writeFile(`${componentPath}/${params.name}.css`, cssContent, (err) => {
-                errorMessage(err, 'CSS');
+            fs.writeFile(`${componentPath}/${params.name}.scss`, cssContent, (err) => {
+                errorMessage(err, 'SCSS');
 
                 // Add md-file
                 fs.writeFile(`${componentPath}/README.md`, mdContent, (err) => {
