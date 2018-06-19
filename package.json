@@ -1,0 +1,18 @@
+{
+  "name": "create-component-files",
+  "version": "0.1.2",
+  "description": "Simple React component creator",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoksel/create-component-files"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yoksel",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
+}
