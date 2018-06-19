@@ -2,17 +2,26 @@
 
 Simple React component creator, just for fun : )
 
+The result is a folder with a bunch of files in a desired location:
+
+```
+MyComponent
+  |_ index.js
+  |_ MyComponent.scss
+  |_ README.md
+```
+
 ## Install
 
 ```npm i create-component-files --save```
 
 ## Usage from console
 
-```$(npm bin)/create-component-files --path=./src/components/ --name=MyComponent"```
+```$(npm bin)/create-component-files --path=./src/components/ --name=MyComponent```
 
 or without prefix `--name`:
 
-```$(npm bin)/create-component-files --path=./src/components/ MyComponent"```
+```$(npm bin)/create-component-files --path=./src/components/ MyComponent```
 
 ## Usage from npm scripts
 
@@ -24,7 +33,7 @@ If you need have fixed components folder path:
 }
 ```
 
-It allows to set `--path` once and then just pass component name like this.
+It allows to set `--path` once and then just pass component name like this:
 
 ```npm run create MyComponent```
 
@@ -36,16 +45,16 @@ Without fixed path:
 }
 ```
 
+This command will create component in current folder:
+
 ```npm run create MyComponent```
 
-In this case you may to pass path:
+In you need to pass a path:
 
 ```npm run create -- --path=PATH-TO-COMPONENTS MyComponent```;
 
-If `--path` was not provided, component will be created in current folder.
-
 ## Options
 
-`--name` — name for component. You can use both variants for passing name: `--name=MyComponent` or just `MyComponent`.
+`--name` — name for component. `--name=MyComponent` and `MyComponent` are equal.
 
 `--path` — path to components folder. Optional.
