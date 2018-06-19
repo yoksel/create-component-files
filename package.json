@@ -10,7 +10,7 @@
     "create-component-files": "./bin/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "bin/index.js"
   },
   "author": "yoksel",
   "license": "ISC",
