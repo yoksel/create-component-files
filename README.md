@@ -1,24 +1,24 @@
 # create-component-files
 
-Simple React component creator, just for fun
+Simple React component creator, just for fun : )
 
 ## Install
 
 ```npm i create-component-files --save```
 
-## Usage
+## Usage from console
 
-```node ./node_modules/create-component-files --path=./src/components/ --name=MyComponent"```
+```$(npm bin)/create-component-files --path=./src/components/ --name=MyComponent"```
 
-or like this (without prefix `--name`):
+or without prefix `--name`:
 
 ```node ./node_modules/create-component-files --path=./src/components/ MyComponent"```
 
-or the same with handy command, place it to `scripts` section in `package.json` like this:
+## Usage from npm scripts
 
 ```
 "scripts": {
-    "create": "node ./node_modules/create-component-files --path=./src/components/"
+    "create": "create-component-files --path=./src/components/"
 }
 ```
 
