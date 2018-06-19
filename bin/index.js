@@ -65,8 +65,10 @@ function createReactComponent() {
 function createFileTree(params) {
     const jsContent = getJsContent(params);
     const cssContent = getCSSContent(params);
-    const componentPath = `./${params.path}/${params.name}`;
+    const mdContent = getMDContent(params);
+    let componentPath = `./${params.path}/${params.name}`;
 
+    // Add folder
     fs.mkdir(componentPath, (err) => {
         if (err) {
             if (err.code === 'EEXIST') {
@@ -81,6 +83,7 @@ function createFileTree(params) {
                 console.log(error(`Component was not created:`));
                 console.log(err);
             }
+
             return;
         }
 
@@ -90,12 +93,14 @@ function createFileTree(params) {
 
             // Add CSS-file
             fs.writeFile(`${componentPath}/index.css`, cssContent, (err) => {
-                if(err) {
-                    console.log(`${error(`CSS for Component was not created:`)} ${err}`);
-                    return;
-                }
+                errorMessage(err, 'CSS');
 
-                console.log(`${success(`Component was created:`)} ${params.path}${params.name}`);
+                // Add md-file
+                fs.writeFile(`${componentPath}/README.md`, mdContent, (err) => {
+                    errorMessage(err, 'README');
+
+                    successMessage(componentPath);
+                });
             });
         });
 
@@ -144,6 +149,10 @@ function getCSSContent(params) {
 return `.${params.name} {
     color: yellowgreen;
 }`;
+}
+
+function getMDContent(params) {
+return `# ${params.name}`;
 }
 
 // ------------------------------
