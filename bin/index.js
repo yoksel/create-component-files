@@ -70,23 +70,24 @@ function createFileTree(params) {
     fs.mkdir(componentPath, (err) => {
         if (err) {
             if (err.code === 'EEXIST') {
-                console.log(`${error(`Component was not created:`)} path ${componentPath} already exists`);
+                console.log(error(`Component was not created:`));
+                console.log(`path ${componentPath} already exists`);
             }
             else if (err.code === 'ENOENT') {
-                console.log(`${error(`Component was not created:`)} path ${params.path} doesn't exist`);
+                console.log(error(`Component was not created:`));
+                console.log(`path ${params.path} doesn't exist`);
             }
             else {
-                console.log(`${error(`Component was not created:`)} ${err}`);
+                console.log(error(`Component was not created:`));
+                console.log(err);
             }
             return;
         }
 
         // Add JS-file
         fs.writeFile(`${componentPath}/index.js`, jsContent, (err) => {
-            if (err) {
-                console.log(`${error(`JS for Component was not created:`)} ${err}`);
-                return;
-            }
+            errorMessage(err, 'JS');
+
             // Add CSS-file
             fs.writeFile(`${componentPath}/index.css`, cssContent, (err) => {
                 if(err) {
@@ -103,6 +104,25 @@ function createFileTree(params) {
 
 // Helpers
 // ------------------------------
+
+function isLowerCase(name) {
+    const firstNameLetter = name.substr(0,1);
+
+    return firstNameLetter === firstNameLetter.toLowerCase();
+}
+
+function successMessage(componentPath) {
+    const finalPath = componentPath.replace('././', '');
+
+    console.log(`${success(`Component was created:`)} ${finalPath}`);
+}
+
+function errorMessage(err, fileTypetype) {
+    if(err) {
+        console.log(`${error(`${fileTypetype}-file for component was not created:`)}`);
+        console.log(err);
+    }
+}
 
 function getJsContent(params) {
 return `import React, { Component } from 'react';
