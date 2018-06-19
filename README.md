@@ -22,15 +22,15 @@ or the same with handy command, place it to `scripts` section in `package.json` 
 }
 ```
 
-It allows to set `--path` once and then just pass component name
+It allows to set `--path` once and then just pass component name.
 
-Run in console:
+Run `create`:
 
 ```npm run create MyComponent```
 
 ## Options
 
-`--path` — path to components folder
+`--path` — path to components folder.
 
-`--name` — name for component. When component name is passing, you can use both variants: `--name=MyComponent` or just `MyComponent`
+`--name` — name for component. You can use both variants for passing name: `--name=MyComponent` or just `MyComponent`.
 
