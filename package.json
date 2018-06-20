@@ -1,6 +1,6 @@
 {
   "name": "create-component-files",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Simple React component creator",
   "repository": {
     "type": "git",
@@ -10,14 +10,22 @@
     "create-component-files": "./bin/index.js"
   },
   "scripts": {
-    "test": "bin/index.js"
+    "test": "bin/index.js",
+    "jslint": "eslint '**/*.js'",
+    "jsfix": "eslint '**/*.js' --fix"
   },
   "keywords": [
-    "react", "components", "just for fun"
+    "react",
+    "components",
+    "just for fun"
   ],
   "author": "yoksel",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-yandex": "^1.0.6"
   }
 }
