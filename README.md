@@ -2,7 +2,7 @@
 
 Simple React component creator, just for fun : )
 
-The result is a folder with a bunch of files in a desired location:
+It creates a folder with a bunch of files in a desired location:
 
 ```
 MyComponent
