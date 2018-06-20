@@ -5,6 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 
+const colors = ['tomato', 'darkorange', 'gold', 'yellowgreen', 'lightseagreen', 'teal'];
+
 // Colored output
 const error = chalk.keyword('tomato');
 const warning = chalk.keyword('darkorange');
@@ -160,8 +162,11 @@ export default ${params.name};
 }
 
 function getCSSContent(params) {
+  const randomPos = Math.floor(Math.random() * colors.length);
+  const color = colors[randomPos];
+
 return `.${params.name} {
-    color: yellowgreen;
+    color: ${color};
 }`;
 }
 
