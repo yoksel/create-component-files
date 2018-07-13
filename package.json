@@ -16,8 +16,8 @@
     "test:type": "bin/index.js --path=./NewComponent --type=container Container",
     "test": "npm run test:name && npm run test:path && npm run test:type",
     "test:clean": "rm -rf NewComponent",
-    "js:lint": "eslint '**/*.js'",
-    "js:fix": "eslint '**/*.js' --fix"
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix"
   },
   "keywords": [
     "react",
