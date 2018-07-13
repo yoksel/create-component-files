@@ -66,7 +66,10 @@ function createReactComponent() {
 // ------------------------------
 
 function createFileTree(params) {
-  const jsContent = getJsContent(params);
+  let jsContent = getJsContent(params);
+  if (params.type === 'container') {
+    jsContent = getJsContentContainer(params);
+  }
   const cssContent = getCSSContent(params);
   const mdContent = getMDContent(params);
   let componentPath = `${params.path}${params.name}`;
@@ -92,20 +95,38 @@ function createFileTree(params) {
     fs.writeFile(`${componentPath}/index.js`, jsContent, (jsFileErr) => {
       errorMessage(jsFileErr, 'JS');
 
+      if(params.type === 'container') {
+        writeMdFile(successMessage);
+        return;
+      }
+
       // Add CSS-file
-      fs.writeFile(`${componentPath}/${params.name}.scss`, cssContent, (cssFileErr) => {
-        errorMessage(cssFileErr, 'SCSS');
-
-        // Add md-file
-        fs.writeFile(`${componentPath}/README.md`, mdContent, (mdFileErr) => {
-          errorMessage(mdFileErr, 'README');
-
-          successMessage(componentPath);
-        });
-      });
+      writeCSSFile(() => writeMdFile(successMessage));
     });
-
   });
+
+  const writeCSSFile = (callback) => {
+    fs.writeFile(`${componentPath}/${params.name}.scss`, cssContent, (cssFileErr) => {
+      errorMessage(cssFileErr, 'SCSS');
+
+      // Add next file
+      callback();
+    });
+  }
+
+  const writeMdFile = (callback) => {
+    fs.writeFile(`${componentPath}/README.md`, mdContent, (mdFileErr) => {
+      errorMessage(mdFileErr, 'README');
+
+      callback();
+    });
+  }
+
+  const successMessage = () => {
+    const finalPath = componentPath.replace('././', '');
+
+    console.log(`${success('Component was created:')} ${finalPath}`);
+  }
 }
 
 // Helpers
@@ -128,12 +149,6 @@ function isLowerCase(name) {
   return firstNameLetter === firstNameLetter.toLowerCase();
 }
 
-function successMessage(componentPath) {
-  const finalPath = componentPath.replace('././', '');
-
-  console.log(`${success('Component was created:')} ${finalPath}`);
-}
-
 function errorMessage(err, fileTypetype) {
   if (err) {
     console.log(`${error(`${fileTypetype}-file for component was not created:`)}`);
@@ -143,15 +158,52 @@ function errorMessage(err, fileTypetype) {
 
 function getJsContent(params) {
   return `import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './${params.name}.css';
 
 class ${params.name} extends Component {
   render() {
-  return (
-    <div className="${params.name}">${params.name}</div>
-  );
+    return (
+      <div className="${params.name}">${params.name}</div>
+    );
   }
 }
+
+export default ${params.name};
+
+Playground.propTypes = {
+
+};
+`;
+}
+
+function getJsContentContainer(params) {
+  return `import {connect} from 'react-redux';
+
+import ${params.name}Template from '../../components/${params.name}';
+
+const mapStateToProps = (state) => {
+  return {
+    data: state.${params.name}
+  };
+};
+
+const mapDispatchProps = (dispatch) => {
+  return {
+    onClick: (data) => {
+      dispatch({
+        type: 'DO_SOMETHING',
+        id: data.id
+      });
+    }
+  };
+};
+
+const ${params.name} = connect(
+  mapStateToProps,
+  mapDispatchProps
+)(${params.name}Template);
 
 export default ${params.name};
 `;
@@ -163,11 +215,15 @@ function getCSSContent(params) {
 
   return `.${params.name} {
   color: ${color};
-}`;
+}`
+;
 }
 
 function getMDContent(params) {
-  return `# ${params.name}`;
+  return `# ${params.name}
+
+## Props
+`;
 }
 
 // ------------------------------
