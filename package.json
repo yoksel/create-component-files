@@ -1,6 +1,6 @@
 {
   "name": "create-component-files",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Simple React component creator",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
   "scripts": {
     "test:noparams": "bin/index.js",
     "test:name": "bin/index.js NewComponent",
-    "test:path": "bin/index.js -- --path=./NewComponent InnerComponent",
-    "test:type": "bin/index.js --  --path=./NewComponent --type=container Container",
+    "test:path": "bin/index.js --path=./NewComponent InnerComponent",
+    "test:type": "bin/index.js --path=./NewComponent --type=container Container",
     "test": "npm run test:name && npm run test:path && npm run test:type",
     "test:clean": "rm -rf NewComponent",
     "jslint": "eslint '**/*.js'",

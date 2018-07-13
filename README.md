@@ -11,11 +11,19 @@ MyComponent
   |_ README.md
 ```
 
+With flag `type=container` Scss-file will not be created:
+
+```
+MyComponent
+  |_ index.js
+  |_ README.md
+```
+
 ## Install
 
 ```npm i create-component-files --save```
 
-## Usage from console
+## Usage from package
 
 ```$(npm bin)/create-component-files --path=./src/components/ --name=MyComponent```
 
@@ -25,11 +33,11 @@ or without prefix `--name`:
 
 ## Usage from npm scripts
 
-If you need have fixed components folder path:
+If you need to have fixed components folder path:
 
 ```
 "scripts": {
-    "create": "create-component-files --path=./src/components/"
+  "create": "create-component-files --path=./src/components/"
 }
 ```
 
@@ -41,7 +49,7 @@ Without fixed path:
 
 ```
 "scripts": {
-    "create": "create-component-files"
+  "create": "create-component-files"
 }
 ```
 
@@ -58,3 +66,21 @@ In you need to pass a path:
 `--name` — name for component. `--name=MyComponent` and `MyComponent` are equal.
 
 `--path` — path to components folder. Optional.
+
+`--type` — type of component. Optional. Use `type=container` to get container component without styles. Js-file will contain `mapStateToProps`, `mapDispatchProps` and `connect`;
+
+## My usage example
+
+```
+"scripts": {
+  "create": "create-component-files",
+  "component": "create-component-files --path=./src/components/",
+  "container": "create-component-files --path=./src/containers/ --type=container",
+}
+```
+
+So command `npm run create MyComponent` will create MyComponent in current folder. Folder will contain js, styles & docs.
+
+`npm run component MyComponent` will create MyComponent in folder with your components. Folder will contain js, styles & docs.
+
+`npm run container MyComponent` will create MyComponent in folder with your containers. Folder will contain js & docs (no styles).
