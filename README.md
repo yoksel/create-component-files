@@ -1,4 +1,4 @@
-# create-component-files
+# create-component-files [![Build Status](https://travis-ci.org/yoksel/create-component-files.svg?branch=master)](https://travis-ci.org/yoksel/create-component-files)
 
 Simple React component creator, just for fun : )
 
@@ -67,7 +67,7 @@ In you need to pass a path:
 
 `--path` — path to components folder. Optional.
 
-`--type` — type of component. Optional. Use `type=container` to get container component without styles. Js-file will contain `mapStateToProps`, `mapDispatchProps` and `connect`;
+`--type` — type of component. Optional. Use `type=container` to get container component without styles. Js-file will contain `mapStateToProps`, `mapDispatchProps` and `connect`
 
 ## My usage example
 
@@ -79,7 +79,7 @@ In you need to pass a path:
 }
 ```
 
-So command `npm run create MyComponent` will create MyComponent in current folder. Folder will contain js, styles & docs.
+Command `npm run create MyComponent` will create MyComponent in current folder. Folder will contain js, styles & docs.
 
 `npm run component MyComponent` will create MyComponent in folder with your components. Folder will contain js, styles & docs.
 
