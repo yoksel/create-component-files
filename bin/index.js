@@ -103,7 +103,7 @@ function createFileTree(params) {
     fs.writeFile(`${componentPath}/index.js`, jsContent, (jsFileErr) => {
       errorMessage(jsFileErr, 'JS');
 
-      if(params.type === 'container') {
+      if (params.type === 'container') {
         writeMdFile(successMessage);
         return;
       }
@@ -120,7 +120,7 @@ function createFileTree(params) {
       // Add next file
       callback();
     });
-  }
+  };
 
   const writeMdFile = (callback) => {
     fs.writeFile(`${componentPath}/README.md`, mdContent, (mdFileErr) => {
@@ -128,13 +128,13 @@ function createFileTree(params) {
 
       callback();
     });
-  }
+  };
 
   const successMessage = () => {
     const finalPath = componentPath.replace('././', '');
 
     console.log(`${success('Component was created:')} ${finalPath}`);
-  }
+  };
 }
 
 // ------------------------------
