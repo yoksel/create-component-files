@@ -75,7 +75,7 @@ In you need to pass a path:
 "scripts": {
   "create": "create-component-files",
   "component": "create-component-files --path=./src/components/",
-  "container": "create-component-files --path=./src/containers/ --type=container",
+  "container": "create-component-files --path=./src/containers/ --type=container"
 }
 ```
 

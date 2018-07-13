@@ -1,6 +1,6 @@
 {
   "name": "create-component-files",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Simple React component creator",
   "repository": {
     "type": "git",
