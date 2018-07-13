@@ -10,7 +10,12 @@
     "create-component-files": "./bin/index.js"
   },
   "scripts": {
-    "test": "bin/index.js",
+    "test:noparams": "bin/index.js",
+    "test:name": "bin/index.js NewComponent",
+    "test:path": "bin/index.js -- --path=./NewComponent InnerComponent",
+    "test:type": "bin/index.js --  --path=./NewComponent --type=container Container",
+    "test": "npm run test:name && npm run test:path && npm run test:type",
+    "test:clean": "rm -rf NewComponent",
     "jslint": "eslint '**/*.js'",
     "jsfix": "eslint '**/*.js' --fix"
   },
